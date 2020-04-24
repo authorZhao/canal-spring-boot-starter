@@ -1,3 +1,69 @@
+canal使用
+[canal官网介绍](https://github.com/alibaba/canal/wiki/AdminGuide)
+
+## 1.开启mysql的bin-log
+
+### windows
+
+```
+
+[mysqld]
+
+# 设置mysql的安装目录[根据本地情况进行修改]
+basedir=D:/mysql/mysql-5.7.24-winx64
+#Path to the database root
+datadir=D:/mysql/mysql-5.7.24-winx64/data
+#设置3306端口
+port = 3306
+# 允许最大连接数
+max_connections=200
+# 服务端使用的字符集默认为8比特编码的latin1字符集
+character-set-server=utf8
+# 创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+# Server Id.数据库服务器id，这个id用来在主从服务器中标记唯一mysql服务器
+# 开启binlog日志
+log-bin = D:/mysql/mysql-5.7.24-winx64/mysql-bin/mysql-bin.log
+expire-logs-days = 14
+max-binlog-size = 500M
+server-id = 1
+
+[mysql]
+# 设置mysql客户端默认字符集
+
+default-character-set=utf8
+max_allowed_packet=20M
+
+
+```
+
+重启服务
+
+```
+net stop mysql
+net start mysql
+```
+
+### centos7
+
+[虚拟机搭建mysql8]( https://blog.csdn.net/weixin_43328357/article/details/104357246 )
+
+
+
+```sql
+注意点：
+1.mysql8密码加密方式有点不一样，不清楚的百度，这个设计远程连接问题
+2.创建用canal，分配权限
+3.binlog日志配置和windows一样的，expire-logs-days = 14
+max-binlog-size = 500M
+server-id = 1
+create user '创建用canal'@'%' identified by 'canal';
+GRANT SHOW VIEW, SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%'; 
+```
+
+
+
 ## 2.下载canal
 
 1.[下载地址]( https://github.com/alibaba/canal/releases/tag/canal-1.1.4 )
