@@ -218,8 +218,8 @@ com:
 
 ```
 配置说明
-1.username就是数据库的账号
-2.password就是数据库的密码
+1.username就是canal服务端的账号，如果没有设置可不填，在instance.里面设置04-29日改
+2.password就是canal服务端的密码，如果没有设置可不填
 3.destination这个就是canal实例的名称，这个必须在canal服务端配置好，默认自带example
 4.filter过滤规则，如果在客户端配置了这个，服务端的过滤配置会被覆盖，表示监听那些标，规则database.tableName
 5.hostname canal服务端ip
