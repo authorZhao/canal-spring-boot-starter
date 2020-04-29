@@ -31,11 +31,11 @@ public class CanalProperties {
     private String destination="example";
 
     /**
-     * 数据库用户名
+     * canal服务端用户名
      */
     private String username;
     /**
-     * 数据库密码
+     * canal服务端密码
      */
     private String password;
 
